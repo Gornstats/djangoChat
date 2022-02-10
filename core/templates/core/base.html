@@ -16,8 +16,14 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                    <a href="/login/" class="text-white hover:text-gray-200">Login</a>
-                    <a href="/signup/" class="px-5 py-2 rounded-xl text-white bg-teal-600 hover:bg-teal-700"><strong>Sign Up</strong></a>
+                {% if request.user.is_authenticated %}
+                    <p class="text-teal-200 text-s fixed bottom-1 right-1">Logged in as {{user.username}}</p>
+                    <a href="/rooms/" class="text-white hover:text-yellow-200">Chatrooms</a>
+                    <a href="/logout/" class="px-5 py-2 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Log out</a>
+                {% else %}
+                    <a href="/login/" class="text-white hover:text-yellow-200">Login</a>
+                    <a href="/signup/" class="px-5 py-2 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Sign Up</a>
+                {% endif %}
             </div>
         </nav>
 
