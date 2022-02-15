@@ -1,5 +1,5 @@
 import json
-
+from django.utils.html import escape
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 
@@ -26,7 +26,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         
     async def receive(self, text_data):
         data = json.loads(text_data)
-        message = data['message']
+        message = escape(data['message'])
         username = data['username']
         room = data['room']
         
